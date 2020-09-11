@@ -9,7 +9,7 @@ $(document).ready(function() {
     // $("#currencyConverter").val(" ");
 
     let request = new XMLHttpRequest();
-    const url = ` https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
+    const url = `https://pro.exchangerate-api.com/v6/${process.env.API_KEY}/pair/EUR/GBP`;
 
     request.onreadystatechange = function() {
       if(this.readyState === 4 && this.status === 200) {
@@ -21,8 +21,8 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-      $(".showUSD").html(`USD Dollars: ${response.result}`);
-      console.log(response.result);
+      $(".showUSD").html(`USD Dollars: ${response.conversion_rates.USD}`);
+      console.log(response.conversion_rates.USD);
     }
   })
 });
