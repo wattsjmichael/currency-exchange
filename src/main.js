@@ -9,48 +9,46 @@ $(document).ready(function() {
     $("#usdValue").val("");
   $("#reload").click(function(){
     location.reload();
+  });
 
 
+let promise = new Promise(function(resolve, reject){
+  let request = new XMLHttpRequest();
+  const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
+  request.onload = function() {
+    if (this.status === 200){
+    resolve(request.response);
+  } else {
+    reject(request.response);
+  }
+}
+request.open("Get", url, true);
+request.send();
+});
 
-
-
-    
-    let request = new XMLHttpRequest();
-    const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
-
-    request.onreadystatechange = function() {
-      if(this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse (this.responseText);
-        getElements(response);
-      }
-    };
-
-    request.open("GET", url, true);
-    request.send();
-
-
-
-
-
-    function getElements(response) {
+    promise.then(function(response) {
       let country = $("#country").val();
+      const body = JSON.parse(response);
+      console.log(`${error}`)
         if (country === "USD"){
-          $("#showUSD").text((`USD Value: ${(response.conversion_rates.USD)*(usdValue)}`)).show();
+          $("#showUSD").text((`USD Value: ${(body.conversion_rates.USD)*(usdValue)}`)).show();
+          console.log(`${body.conversion_rates.USD}`)
         } else if (country === "AED"){
-          $("#showAED").text((`AED Value: ${(response.conversion_rates.AED)*(usdValue)}`)).show();
+          $("#showAED").text((`AED Value: ${(body.conversion_rates.AED)*(usdValue)}`)).show();
         } else if (country === "ARS"){
-          $("#showARS").text((`ARS Value: ${(response.conversion_rates.ARS)*(usdValue)}`)).show();
+          $("#showARS").text((`ARS Value: ${(body.conversion_rates.ARS)*(usdValue)}`)).show();
         } else if (country === "AUD"){
-          $("#showAUD").text((`AUD Value: ${(response.conversion_rates.AUD)*(usdValue)}`)).show();
+          $("#showAUD").text((`AUD Value: ${(body.conversion_rates.AUD)*(usdValue)}`)).show();
         } else if (country === "BGN"){
-          $("#showBGN").text((`BGN Value: ${(response.conversion_rates.BGN)*(usdValue)}`)).show();
+          $("#showBGN").text((`BGN Value: ${(body.conversion_rates.BGN)*(usdValue)}`)).show();
         } else if (country === "BRL"){
-          $("#showBRL").text((`BRL Value: ${(response.conversion_rates.BRL)*(usdValue)}`)).show();
+          $("#showBRL").text((`BRL Value: ${(body.conversion_rates.BRL)*(usdValue)}`)).show();
         } else {
           $("#showError").text("Pick a different country!");
         }
-      
-      }
-    
+      }, function(error) {
+          $("#showError").text(`There was an error processing your request; ${error}`);
+
+        });
+      });
     });
-  });
