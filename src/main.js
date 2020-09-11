@@ -9,7 +9,7 @@ $(document).ready(function() {
     $("#usdValue").val("");
   $("#reload").click(function(){
     location.reload();
-  })
+
 
 
 
@@ -34,8 +34,6 @@ $(document).ready(function() {
 
     function getElements(response) {
       let country = $("#country").val();
-      console.log(country);
-      if (response) {
         if (country === "USD"){
           $("#showUSD").text((`USD Value: ${(response.conversion_rates.USD)*(usdValue)}`)).show();
         } else if (country === "AED"){
@@ -49,13 +47,10 @@ $(document).ready(function() {
         } else if (country === "BRL"){
           $("#showBRL").text((`BRL Value: ${(response.conversion_rates.BRL)*(usdValue)}`)).show();
         } else {
-          $("#showError").text("Pick a different country!");;
+          $("#showError").text("Pick a different country!");
         }
-      }  else {
-        $("showError").html(`Error! Call Michael! ${respons.result} because of ${response.error-type}`);
-
-      };
+      
+      }
     
-    }
+    });
   });
-});
