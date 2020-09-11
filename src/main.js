@@ -4,12 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 $(document).ready(function() {
-  $("#usdConverter").click(function(){
-    // const country = $("#currencyConverter").val();
-    // $("#currencyConverter").val(" ");
+  $("#currencyConverter").click(function(){
+    const usdValue = $("#usdConverter").val();
+    $("#usdConverter").val("");
+    console.log(usdValue);
 
     let request = new XMLHttpRequest();
-    const url = `https://pro.exchangerate-api.com/v6/${process.env.API_KEY}/pair/EUR/GBP`;
+    const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`
 
     request.onreadystatechange = function() {
       if(this.readyState === 4 && this.status === 200) {
@@ -21,8 +22,8 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-      $(".showUSD").html(`USD Dollars: ${response.conversion_rates.USD}`);
-      console.log(response.conversion_rates.USD);
+      $(".showUSD").html(`USD Dollars: ${response.conversion_rates.USD}` * (usdValue));
+      $(".showAED").html(`USD Dollars: ${response.conversion_rates.AED}` * (usdValue));
     }
   })
 });
