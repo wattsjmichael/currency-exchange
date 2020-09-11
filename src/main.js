@@ -5,11 +5,13 @@ import './css/styles.css';
 
 $(document).ready(function() {
   $("#usdSubmit").click(function(){
-    const usdValue = $("#usdValue").val();
+    let usdValue = $("#usdValue").val();
     $("#usdValue").val("");
-    console.log(usdValue);
+    $()
 
 
+
+    
     let request = new XMLHttpRequest();
     const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
 
@@ -24,7 +26,11 @@ $(document).ready(function() {
     request.send();
 
 
+
+
+
     function getElements(response) {
+      
       $(".showUSD").html((`USD Dollars: ${(response.conversion_rates.USD)*(usdValue)}`));
       $(".showAED").text((`AED Value: ${(response.conversion_rates.AED)*(usdValue)}`));
     }
