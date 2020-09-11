@@ -5,11 +5,11 @@ import './css/styles.css';
 
 $(document).ready(function() {
   $("#usdConverter").click(function(){
-    const country = $("#currencyConverter").val();
-    $("#currencyConverter").val("");
+    // const country = $("#currencyConverter").val();
+    // $("#currencyConverter").val(" ");
 
     let request = new XMLHttpRequest();
-    const url = ` https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD/${country}`;
+    const url = ` https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
 
     request.onreadystatechange = function() {
       if(this.readyState === 4 && this.status === 200) {
@@ -21,8 +21,8 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-      $("#showUSD").html(`USD Dollars: ${response.conversion_rates.usd}`);
-      console.log(response.conversion_rates.usd);
+      $(".showUSD").html(`USD Dollars: ${response.result}`);
+      console.log(response.result);
     }
   })
 });
