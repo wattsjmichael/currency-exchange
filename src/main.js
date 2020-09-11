@@ -7,6 +7,10 @@ $(document).ready(function() {
   $("#usdSubmit").click(function(){
     let usdValue = $("#usdValue").val();
     $("#usdValue").val("");
+  $("#reload").click(function(){
+    location.reload();
+  })
+
 
 
 
@@ -32,32 +36,21 @@ $(document).ready(function() {
       let country = $("#country").val();
       console.log(country);
       if (country === "USD"){
-        $(".showAED").text((`USD Value: ${(response.conversion_rates.USD)*(usdValue)}`)).show();
+        $("#showUSD").text((`USD Value: ${(response.conversion_rates.USD)*(usdValue)}`)).show();
       } else if (country === "AED"){
-        $(".showAED").text((`AED Value: ${(response.conversion_rates.AED)*(usdValue)}`)).show();
+        $("#showAED").text((`AED Value: ${(response.conversion_rates.AED)*(usdValue)}`)).show();
+      } else if (country === "ARS"){
+        $("#showARS").text((`ARS Value: ${(response.conversion_rates.ARS)*(usdValue)}`)).show();
+      } else if (country === "AUD"){
+        $("#showAUD").text((`AUD Value: ${(response.conversion_rates.AUD)*(usdValue)}`)).show();
+      } else if (country === "BGN"){
+        $("#showBGN").text((`BGN Value: ${(response.conversion_rates.BGN)*(usdValue)}`)).show();
+      } else if (country === "BRL"){
+        $("#showBRL").text((`BRL Value: ${(response.conversion_rates.BRL)*(usdValue)}`)).show()
       } else {
-        alert ("its so broken!")
-      }     
-      
-      
-      
-      
-      // $("#country > option").foreach(function(){
-      //   console.log(this.value);
-      //   if (this.value === "AED") {
-      //     $(".showAED").text((`AED Value: ${(response.conversion_rates.AED)*(usdValue)}`)).show();
-      //   } else if (this.value === "USD") {
-      //     $(".showUSD").text((`USD Value: ${(response.conversion_rates.USD)*(usdValue)}`)).show();
-      //   }
-        
-
-      // });
-    }
-
-    //   $(".showUSD").html((`USD Dollars: ${(response.conversion_rates.USD)*(usdValue)}`));
-    //   $(".showAED").text((`AED Value: ${(response.conversion_rates.AED)*(usdValue)}`));
-    // }
-
+        alert("Pick a different currency!")
+      }
+    }  
 
   });
 });

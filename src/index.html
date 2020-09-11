@@ -3,11 +3,11 @@
   
 <body>
   <div class="container">
-    <form class="currencyConverter">
     <h1>Currency Converter</h1>
     <label for="usdValue">Enter Currency Number</label>
     <input id="usdValue" type="number">
-    <select class="countrySelector" id="country">
+    <select id="country" name="countryNames">
+      <option value="USD">United States</option>
       <option value="AED">United Arab Emirates</option>
       <option value="ARS">Argentina</option>
       <option value="AUD">Australia</option>
@@ -15,10 +15,16 @@
       <option value="BRL">Brazil</option>
     </select>
     <button class="btn-success" id="usdSubmit">Convert!</button>
-    </form>
-    
-    <div class="showUSD"></div>
-    <div class="showAED"></div>
+    <button class="btn-danger" id="reload">Reset</button>
+  <div class="result">  
+    <div id="showError"></div>
+    <div id="showUSD"></div>
+    <div id="showAED"></div>
+    <div id="showARS"></div>
+    <div id="showAUD"></div>
+    <div id="showBGN"></div>
+    <div id="showBRL"></div>
+  </div>
   </div>
 </body>
 </html>
