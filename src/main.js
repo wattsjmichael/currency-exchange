@@ -20,20 +20,29 @@ $(document).ready(function(){
         const response = JSON.parse(this.responseText);
         getElements(response);
       }
-    }
+    };
     
     request.open("GET", url, true);
     request.send();
 
-    function getElements(response) {
+    function getElements(response){
       if (place === "USD"){
-      $("#showUSD").text(`${(response.conversion_rates.USD * usdValue)} Dollars`).show();
-      console.log(place);
-      console.log(response.conversion_rates.USD)
+        $("#showUSD").text(`${(response.conversion_rates.USD * usdValue)} Dollars`).show();
+      } else if (place === "AED") {
+        $("#showAED").text(`${(response.conversion_rates.USD * usdValue)} Dirham`).show();
+      } else if (place === "ARS") {
+        $("#showARS").text(`${(response.conversion_rates.USD * usdValue)} Argentine Pesos`).show();
+      } else if (place === "AUD") {
+        $("#showAUD").text(`${(response.conversion_rates.USD * usdValue)} Australian Dollar`).show();
+      } else if (place === "BGN") {
+        $("#showBGN").text(`${(response.conversion_rates.USD * usdValue)} Bulgarian Lev`).show();
+      } else if (place === "BRL") {
+        $("#showBRL").text(`${(response.conversion_rates.USD * usdValue)} Brazillian Real`).show();
+      } else if (place === null) {
+        $("#showError").text("Please Select a Country").show();
       } else {
-        alert("You did it wrong!")
+        alert(`If you made it here, call tech support error ${response.status}`)
       }
-      
     }
   });
 });
