@@ -25,7 +25,7 @@ A HTML Website that allows you to change United States Dollar to different curre
 
 ## Bugs
 
-* When importing conversion-service.js to the main.js functionality stops working..
+* When importing conversion-service.js to the main.js functionality stops working.
 
 ## Technologies Used
 
