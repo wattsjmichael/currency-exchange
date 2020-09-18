@@ -3,5 +3,5 @@ body {
 }
 
 #showAED, #showUSD, #showARS, #showBGN, #showBRL, #showError {
-  display: none;
+  display: hide;
 }

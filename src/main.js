@@ -10,20 +10,22 @@ $(document).ready(function(){
     let usdValue = $("#usdValue").val();
     let place = $("#country").val();
     $("#country").val("");
-  
+    $("#reload").click(function(){
+      location.reload();
+  });
 
 
 
-  let promise = new Promise(function(resolve, reject){
-    let request = new XMLHttpRequest();
+    let promise = new Promise(function(resolve, reject){
+      let request = new XMLHttpRequest();
     const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${place}`;
 
       request.onload = function(){
-      if (this.status === 200){
-        resolve(request.response);
-      } else {
-        reject(request.response);
-      }
+        if (this.status === 200){
+          resolve(request.response);
+        } else {
+          reject(request.response);
+        }
       }
     
       request.open("GET", url, true);
@@ -32,24 +34,24 @@ $(document).ready(function(){
     promise.then(function(response){
       const body = JSON.parse(response);
       if (place === "USD"){
-        $("#showUSD").text(`${(body.conversion_rates.USD * usdValue)} Dollars`).show();
+        $("#showResult").text(`${(body.conversion_rates.USD * usdValue)} Dollars`).show();
       } else if (place === "AED") {
-        $("#showAED").text(`${(body.conversion_rates.USD * usdValue)} Dirham`).show();
+        $("#showResult").text(`${(body.conversion_rates.USD * usdValue)} Dirham`).show();
       } else if (place === "ARS") {
-        $("#showARS").text(`${(body.conversion_rates.USD * usdValue)} Argentine Pesos`).show();
+        $("#showResult").text(`${(body.conversion_rates.USD * usdValue)} Argentine Pesos`).show();
       } else if (place === "AUD") {
-        $("#showAUD").text(`${(body.conversion_rates.USD * usdValue)} Australian Dollar`).show();
+        $("#showResult").text(`${(body.conversion_rates.USD * usdValue)} Australian Dollar`).show();
       } else if (place === "BGN") {
-        $("#showBGN").text(`${(body.conversion_rates.USD * usdValue)} Bulgarian Lev`).show();
+        $("#showResult").text(`${(body.conversion_rates.USD * usdValue)} Bulgarian Lev`).show();
       } else if (place === "BRL") {
-        $("#showBRL").text(`${(body.conversion_rates.USD * usdValue)} Brazillian Real`).show();
+        $("#showResult").text(`${(body.conversion_rates.USD * usdValue)} Brazillian Real`).show();
       } else if (place === null) {
         $("#showError").text("Please Select a Country").show();
       } else {
-        alert(`If you made it here, call tech support error ${body.status}`)
+        alert(`If you made it here, call tech support error ${body.status}`);
       }
     }, function(status) {
-      $("#showError").text(`There was a error ${status}`)
+      $("#showError").text(`There was a error ${status}`);
     });
   });
 });

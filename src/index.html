@@ -4,7 +4,7 @@
 <body>
   <div class="container">
     <h1>Currency Converter</h1>
-    <label for="usdValue">Enter Currency Number</label>
+    <label for="usdValue">Enter United States Dollar</label>
     <input id="usdValue" type="number">
     <select id="country" name="countryNames">
       <option value="USD">United States</option>
@@ -14,16 +14,11 @@
       <option value="BGN">Bulgaria</option>
       <option value="BRL">Brazil</option>
     </select>
-    <button class="btn-success" id="usdSubmit">Convert!</button>
+    <button class="btn-success" id="submit">Convert!</button>
     <button class="btn-danger" id="reload">Reset</button>
   <div class="result">  
     <div id="showError"></div>
-    <div id="showUSD"></div>
-    <div id="showAED"></div>
-    <div id="showARS"></div>
-    <div id="showAUD"></div>
-    <div id="showBGN"></div>
-    <div id="showBRL"></div>
+    <div id="showResult"></div>
   </div>
   </div>
 </body>
